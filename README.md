@@ -24,7 +24,7 @@ python app.py
 
 The server should start on `http://localhost:8000`.
 
-## Running Tests
+## Running Unit Tests
 In a seperate terminal window, activate the virtual environment first:
 ```bash
 source venv/bin/activate
@@ -36,6 +36,21 @@ python3 -m unittest tests.py -v
 
 There are no additional test dependencies. I used Flask's test client and Python's
 `unittest` standard library module.
+
+## Example Curl Testing Usage
+
+With the server running, you can test via curl:
+```bash
+# Insert two quarters
+curl -X PUT http://localhost:8000/ -H "Content-Type: application/json" -d '{"coin": 1}' -i
+curl -X PUT http://localhost:8000/ -H "Content-Type: application/json" -d '{"coin": 1}' -i
+
+# Purchase item 1
+curl -X PUT http://localhost:8000/inventory/1 -i
+
+# Check remaining inventory
+curl http://localhost:8000/inventory
+```
 
 ## API Reference
 
